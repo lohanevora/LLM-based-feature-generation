@@ -1,10 +1,24 @@
 # LLM-based-feature-generation
-pip install llm-feature-gen
 
+## Installation
+
+```bash
+pip install llm-feature-gen
+```
+
+## Environment Setup
+
+Create a `.env` file:
+
+```env
 OPENAI_API_KEY=your_api_key
 OPENAI_MODEL=gpt-4.1-mini
 OPENAI_AUDIO_MODEL=whisper-1
+```
 
+## Quickstart
+
+```bash
 python3 - <<'PY'
 from pathlib import Path
 
@@ -26,6 +40,7 @@ for file_name, text in samples.items():
     path.write_text(text, encoding="utf-8")
 
 discovered = discover_features_from_texts("demo_discover_texts")
+
 csv_paths = generate_features_from_texts(
     root_folder="demo_texts",
     merge_to_single_csv=True,
@@ -34,3 +49,10 @@ csv_paths = generate_features_from_texts(
 print(discovered)
 print(csv_paths)
 PY
+```
+
+This creates:
+
+- `outputs/discovered_text_features.json`
+- one CSV per class folder
+- `outputs/all_feature_values.csv`
